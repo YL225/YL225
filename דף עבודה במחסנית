@@ -1,0 +1,49 @@
+public class main {
+    public static boolean ex1(Stack<Integer> s, int n) {
+        Stack<Integer> newP = new Stack<Integer>();
+        newP.clone(s);
+        while (!newP.isEmpty()) {
+            if (n == newP.top())
+                return true;
+            newP.pop();
+        }
+        return false;
+    }
+
+    public static boolean ex4(Node<Character> lst) {
+        Stack<Character> newP = new Stack<Character>();
+        int count = lst.countOfNode(lst);
+        for (int i = 0; i < count / 2; i++) {
+            newP.push(lst.getValue());
+        }
+        if (count % 2 == 1)
+            lst = lst.getNext();
+        while (lst != null) {
+            if (lst.getValue() != newP.pop()) {
+                return false;
+            }
+            lst = lst.getNext();
+        }
+        return true;
+    }
+
+    public static int ex6(Stack<Integer> s, int n) {
+        Stack<Integer> newP = new Stack<Integer>();
+        newP.clone(s);
+        int count = 0;
+        int ret = 0;
+        while (!newP.isEmpty()) {
+            count++;
+            newP.pop();
+        }
+        if (n > count)
+            return -1;
+        else {
+            for (int i = 0; i < count; i++) {
+                ret = s.top();
+                s.pop();
+            }
+        }
+        return ret;
+    }
+}
