@@ -1,0 +1,72 @@
+public class Stack<T> {
+    private Node<T> data;
+
+    public Stack() {
+        this.data = null;
+    }
+
+    public boolean isEmpty() {
+        return this.data == null;
+    }
+
+    public void push(T x) {
+        Node<T> p = new Node<T>(x);
+        if (this.data == null)
+            this.data = p;
+        else {
+            p.setNext(this.data);
+            this.data = p;
+        }
+    }
+
+    public T pop() {
+        T x = this.data.getValue();
+        this.data = this.data.getNext();
+        return (x);
+    }
+
+    public T top() {
+        return (this.data.getValue());
+    }
+
+    public void clone(Stack<T> s) {
+        Stack<T> newP = new Stack<T>();
+        Stack<T> lastP = new Stack<T>();
+        while (!s.isEmpty()) {
+            newP.push(s.pop());
+        }
+        while (!newP.isEmpty()) {
+            lastP.push(s.pop());
+        }
+    }
+
+    public void spilOn(Stack<T> s1, Stack<T> s2){
+        while (!s2.isEmpty()){
+            s1.push(s2.pop());
+        }
+    }
+    public int countOfS(Stack<Integer> s){
+        int sum = 0;
+        while (!s.isEmpty()){
+            sum += s.pop();
+        }
+        return sum;
+    }
+
+
+
+
+        @Override
+    public String toString() {
+        Node<T> pos = this.data;
+        String str = "[";
+        while (pos != null) {
+            str = str + pos.getValue().toString();
+            if (pos.getNext() != null)
+                str = str + ",";
+            pos = pos.getNext();
+        }
+        str = str + "]";
+        return (str);
+    }
+}
