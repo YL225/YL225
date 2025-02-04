@@ -5,10 +5,12 @@ public class Queue<T> {
     public boolean isEmpty() {
         return (first == null);
     }
+
     public Queue() {
         this.first = null;
         this.last = null;
     }
+
     public void insert(T x) {
         Node<T> tmp = new Node<T>(x);
         if (first == null) {
@@ -18,6 +20,7 @@ public class Queue<T> {
         }
         last = tmp;
     }
+
     public T remove() {
         T x = first.getValue();
         first = first.getNext();
@@ -29,6 +32,7 @@ public class Queue<T> {
     public T head() {
         return first.getValue();
     }
+
     public String toString() {
         Node<T> pos = this.first;
         String str = "[";
@@ -41,16 +45,31 @@ public class Queue<T> {
         str = str + "]";
         return (str);
     }
-    public Queue<T> clone(Queue<T> q){
-        Queue<T> temp= new Queue<T>();
-        Queue<T> temp1= new Queue<T>();
-        while (!q.isEmpty()){
+
+    public Queue<T> clone(Queue<T> q) {
+        Queue<T> temp = new Queue<T>();
+        Queue<T> temp1 = new Queue<T>();
+        while (!q.isEmpty()) {
             temp.insert(q.head());
             temp1.insert(q.remove());
         }
-        while (temp1.isEmpty()){
+        while (temp1.isEmpty()) {
             q.insert(q.remove());
         }
         return temp;
     }
+
+    public int count(Queue<T> q) {
+        Queue<T> temp = new Queue<T>();
+        int count = 0;
+        while(!q.isEmpty()){
+            count++;
+            temp.insert(q.remove());
+        }
+        while (!temp.isEmpty()){
+            q.insert(temp.remove());
+        }
+        return count;
+    }
+
 }
