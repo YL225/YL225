@@ -45,7 +45,7 @@ public class Queue<T> {
         Queue<T> temp= new Queue<T>();
         Queue<T> temp1= new Queue<T>();
         while (!q.isEmpty()){
-            temp.insert(q.remove());
+            temp.insert(q.head());
             temp1.insert(q.remove());
         }
         while (temp1.isEmpty()){
