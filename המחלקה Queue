@@ -41,4 +41,16 @@ public class Queue<T> {
         str = str + "]";
         return (str);
     }
+    public Queue<T> clone(Queue<T> q){
+        Queue<T> temp= new Queue<T>();
+        Queue<T> temp1= new Queue<T>();
+        while (!q.isEmpty()){
+            temp.insert(q.remove());
+            temp1.insert(q.remove());
+        }
+        while (temp1.isEmpty()){
+            q.insert(q.remove());
+        }
+        return temp;
+    }
 }
